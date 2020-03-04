@@ -481,7 +481,7 @@ class ChartLegend {
 
 class ChartTooltipItem {
   String xLabel;
-  int yLabel;
+  num yLabel;
   String label;
   String value;
   int index;
