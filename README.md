@@ -159,6 +159,6 @@ ChartJS(
 
 Like?
 
-[![paypal](https://raw.githubusercontent.com/vramosx/flutter_web_chartjs/master/images/bmc.png)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=2LQ3KCKG6XDUQ)
+[![paypal](https://raw.githubusercontent.com/vramosx/flutter_web_chartjs/master/images/bmc.png)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=3BRBBGTNGF7FQ)
 
 Thanks for your support! :)
