@@ -31,7 +31,7 @@ function chartJSWrapperPlugin() {
         label: formatTooltip
       }
     }
-    
+
     if(formatTooltip) {
       if(!config.options) {
         config['options'] = {
@@ -98,3 +98,5 @@ function chartJSWrapperPlugin() {
     });
   }
 }
+
+window.chartJSWrapper = chartJSWrapperPlugin();
