@@ -1,4 +1,4 @@
-![chartjs running on flutter web](https://raw.githubusercontent.com/vramosx/flutter_web_chartjs/master/flutter_web_chartjs.png)
+![chartjs running on flutter web](https://raw.githubusercontent.com/vramosx/flutter_web_chartjs/master/images/flutter_web_chartjs.png)
 
 A ChartJS wrapper for Flutter Web.
 
@@ -161,4 +161,4 @@ Like?
 
 [![paypal](https://raw.githubusercontent.com/vramosx/flutter_web_chartjs/master/images/bmc.png)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=2LQ3KCKG6XDUQ)
 
-Thanks for your support!
+Thanks for your support! :)
