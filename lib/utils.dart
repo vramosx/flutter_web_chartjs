@@ -10,7 +10,7 @@ class Utils {
   static String toRGBA(Color c) => 'rgba(${c.red.toString()},'
       '${c.green.toString()},'
       '${c.blue.toString()},'
-      '${c.opacity.toString()})';
+      '${c.opacity.toStringAsFixed(1)})';
 
   static Map<dynamic, dynamic> gradientToJSon(LinearGradient linearGradient) {
     var c = linearGradient;
