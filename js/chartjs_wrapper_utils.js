@@ -26,24 +26,20 @@ window.chartJSWrapperPlugin = class {
   showChart = (chartId, config, formatTooltip) => {
     config = JSON.parse(config);
 
-    var tooltipCallback = {
-      callbacks: {
-        label: formatTooltip
-      }
-    }
-
     if(formatTooltip) {
-      if(!config.options) {
-        config['options'] = {
-          tooltips: tooltipCallback
-        }
+      var tooltipCallback = {
+          label: (tooltipItem, data) => {
+            var tItem = JSON.stringify(tooltipItem);
+            return formatTooltip(tItem, null);
+          }
       }
 
-      if(!config.options.tooltips) {
-        config.options['tooltips'] = tooltipCallback;
+      if(config.options['tooltips']) {
+        config.options['tooltips']['callbacks'] = tooltipCallback;
       }
     }
   
+    var createGradient = this.createGradient;
     this.checkContext(document, "flt-platform-view").then(platformView => {
         this.checkContext(platformView.shadowRoot, "#" + chartId).then(chart => {
           var _chartContext = chart.getContext("2d");
@@ -91,11 +87,11 @@ window.chartJSWrapperPlugin = class {
               }
             }
           }
+          
           if (this.chartJSObject != null) chartJSObject.destroy();
-    
           this.chartJSObject = new Chart(_chartContext, config);
       })
     });
   }
-  
+
 }
