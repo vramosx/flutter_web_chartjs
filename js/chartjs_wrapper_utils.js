@@ -1,7 +1,7 @@
-var chartJSWrapperPlugin = function() {
-  this.chartJSObject = null;
+window.chartJSWrapperPlugin = class {
+  chartJSObject = null;
 
-  this.checkContext = async (element, selector) => {
+  checkContext = async (element, selector) => {
     while (element.querySelector(selector) === null) {
       await new Promise(resolve => setTimeout(resolve, 500));
     }
@@ -9,7 +9,7 @@ var chartJSWrapperPlugin = function() {
     return element.querySelector(selector);
   };
 
-  this.createGradient = (gradientJson, chartContext) => {
+  createGradient = (gradientJson, chartContext) => {
     if (gradientJson.isGradient) {
       var gradient = chartContext.createLinearGradient(0, 0, 0, 400);
   
@@ -23,7 +23,7 @@ var chartJSWrapperPlugin = function() {
     return gradientJson;
   }
 
-  this.showChart = (chartId, config, formatTooltip) => {
+  showChart = (chartId, config, formatTooltip) => {
     config = JSON.parse(config);
 
     var tooltipCallback = {
@@ -97,6 +97,5 @@ var chartJSWrapperPlugin = function() {
       })
     });
   }
+  
 }
-
-window.chartJSWrapperPlugin = chartJSWrapperPlugin;
