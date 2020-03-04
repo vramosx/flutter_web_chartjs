@@ -1,3 +1,5 @@
+![chartjs running on flutter web](https://raw.githubusercontent.com/vramosx/flutter_web_chartjs/master/flutter_web_chartjs.png)
+
 A ChartJS wrapper for Flutter Web.
 
 This project will be _lightly_ maintained by the original author. Contributions are welcome.
@@ -9,7 +11,7 @@ This project will be _lightly_ maintained by the original author. Contributions 
 Include in your pubspec.yaml:
 
     dependencies:  
-       flutter_web_chartjs: ^0.2.0
+       flutter_web_chartjs: ^0.2.1
 
 
 Open your `web/index.html` file, and include this lines to your head tag:
