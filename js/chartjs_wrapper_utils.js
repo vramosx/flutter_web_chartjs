@@ -1,4 +1,4 @@
-function chartJSWrapperPlugin() {
+var chartJSWrapperPlugin = function() {
   this.chartJSObject = null;
 
   this.checkContext = async (element, selector) => {
@@ -98,5 +98,3 @@ function chartJSWrapperPlugin() {
     });
   }
 }
-
-window.chartJSWrapper = chartJSWrapperPlugin();
