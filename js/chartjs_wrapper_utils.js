@@ -98,3 +98,5 @@ var chartJSWrapperPlugin = function() {
     });
   }
 }
+
+window.chartJSWrapperPlugin = chartJSWrapperPlugin;
