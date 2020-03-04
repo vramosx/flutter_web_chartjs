@@ -88,15 +88,17 @@ class _ChartJSState extends State<ChartJS> {
         }
       }
 
-    formatTooltip = (_tooltipItem, _data) {
-      var _decode = json.decode(_tooltipItem);
-      var tooltipItem = ChartTooltipItem.fromJson(_decode);
+    if(tooltipCallback != null) {
+      formatTooltip = (_tooltipItem, _data) {
+        var _decode = json.decode(_tooltipItem);
+        var tooltipItem = ChartTooltipItem.fromJson(_decode);
 
-      if(tooltipCallback != null) return tooltipCallback(tooltipItem);
+        if(tooltipCallback != null) return tooltipCallback(tooltipItem);
 
-      return tooltipItem.value;
-    }; 
-
+        return tooltipItem.value;
+      };
+    }
+     
     var utils = ChartJSWrapperPlugin();
 
     utils.showChart(
