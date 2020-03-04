@@ -20,7 +20,7 @@ Open your `web/index.html` file, and include this lines to your head tag:
 <script  src="https://cdn.jsdelivr.net/gh/vramosx/flutter_web_chartjs@v0.2.1-alpha/js/chart.min.js"></script>
 
 <!-- this is a js to communicate with flutter -->
-<script  src="https://cdn.jsdelivr.net/gh/vramosx/flutter_web_chartjs@v0.2.1-alpha/js/chartjs_wrapper_utils.js"  type="application/javascript"></script>
+<script  src="https://cdn.jsdelivr.net/gh/vramosx/flutter_web_chartjs@v0.2.1-alpha/js/chartjs.wrapper.utils.min.js"  type="application/javascript"></script>
 ```
 
 ## Usage
