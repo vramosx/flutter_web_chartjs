@@ -81,12 +81,14 @@ class _ChartJSState extends State<ChartJS> {
     
     String Function(ChartTooltipItem) tooltipCallback;
     if(widget.config.options != null) {
+      if(widget.config.options.tooltip != null) {
         if(widget.config.options.tooltip.callbacks != null) {
           if(widget.config.options.tooltip.callbacks.label != null) {
             tooltipCallback = widget.config.options.tooltip.callbacks.label;
           }
         }
       }
+    }
 
     if(tooltipCallback != null) {
       formatTooltip = (_tooltipItem, _data) {

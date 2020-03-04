@@ -55,7 +55,7 @@ window.chartJSWrapperPlugin = class {
             if (element.borderColor) {
               element.borderColor = createGradient(
                 element.borderColor,
-                chartContext
+                _chartContext
               );
             }
           });
