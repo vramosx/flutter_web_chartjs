@@ -32,7 +32,7 @@ Every configuration of ChartJS exists in this package with the prefix 'Chart', e
 > - WARNING: Some configuration of ChartJS still on development
 
 **ChartJS - Javascript:**
-```
+```js
 var myChart = new Chart(ctx, {
      type: 'bar',
      data: barChartData,
@@ -46,7 +46,7 @@ var myChart = new Chart(ctx, {
 ```
 
 **ChartJS - Flutter Web:**
-```
+```dart
 @override
 Widget build(BuildContext context) {
      return ChartJS(
@@ -88,7 +88,7 @@ Widget build(BuildContext context) {
 #### 1 - Every literal option(string) on JS, is a enum on this package:
 
 ##### JS:
-```
+```js
 new Chart(ctx, {
      type: 'bar' // literal option
      ...
@@ -96,7 +96,7 @@ new Chart(ctx, {
 ```
 
 #### Flutter Web:
-```
+```dart
 ChartJS(
         config: ChartConfig(
 	        type: ChartType.line, // enum of string options
@@ -105,7 +105,7 @@ ChartJS(
 );
 ```
 #### 2 - You can use opacity and linear gradient to background and border options:
-```
+```dart
 return ChartJS(
         id: 'my-chart' // you need to set a unique id
         config: ChartConfig(
@@ -138,7 +138,7 @@ return ChartJS(
 ```
 
 #### 3 - You can use callback to format the tooltip:
-```
+```dart
 ChartJS(
 		...
 		options: ChartOptions(
