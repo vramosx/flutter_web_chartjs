@@ -28,57 +28,73 @@ class _MyAppState extends State<MyApp> {
         body: Container(
           alignment: Alignment.center,
           child: ChartJS(
-              id: 'evolution-chart',
+              id: 'line-example',
               config: ChartConfig(
-                  options: ChartOptions(
-                      responsive: true,
-                      layout: ChartLayout(
-                          padding: EdgeInsets.all(20)),
-                      legend: ChartLegend(display: false),
-                      scales: ChartScales(yAxes: [
-                        ChartAxis(
-                            ticks: ChartTicks(
-                                max: 250,
-                                format: 'R\$ {value}'))
-                      ], xAxes: [
-                        ChartAxis(
-                            gridLines: ChartGridLines(display: false),
-                            ticks: ChartTicks(maxTicksLimit: 20))
-                      ])),
-                  type: ChartType.line,
-                  data: ChartData(
-                      datasets: [
-                        ChartDataset(
-                          borderColor: Colors.blueAccent.withOpacity(0.7),
-                          backgroundColor: LinearGradient(colors: [
-                            Colors.blueAccent.withOpacity(0.6),
-                            Colors.blueAccent.withOpacity(0.0)
-                          ], stops: [
-                            0,
-                            1
-                          ]),
-                          fill: ChartDatasetFill.start,
-                          data: [
-                            23,
-                            45,
-                            89,
-                            12,
-                            44,
-                            89,
-                            100
-                          ],
-                        ),
+                type: ChartType.line,
+                options: ChartOptions(
+                  tooltip: ChartTooltip(
+                    intersect: false,
+                    mode: ChartTooltipMode.isIndex,
+                    callbacks: ChartCallbacks(
+                      label: (tooltip) {
+                        return 'R\$ ${tooltip.value}';
+                      }
+                    )
+                  )
+                ),
+                data: ChartData(
+                  labels: [
+                    'January',
+                    'February',
+                    'March',
+                    'April',
+                    'May',
+                    'June',
+                    'July',
+                    'August',
+                    'September'
+                  ],
+                  datasets: [
+                    ChartDataset(
+                      data: [
+                        15,
+                        23,
+                        56,
+                        95,
+                        44,
+                        54,
+                        88,
+                        12
                       ],
-                      labels: [
-                        'Label1',
-                        'Label2',
-                        'Label3',
-                        'Label4',
-                        'Label5',
-                        'Label6',
-                        'Label7'
-                      ]
-                    )),
+                      label: 'dataset 1',
+                      backgroundColor: Colors.blue.withOpacity(0.4)
+                    ),
+                    ChartDataset(
+                      data: [
+                        12,
+                        88,
+                        54,
+                        44,
+                        56,
+                        23,
+                        15,
+                        12
+                      ],
+                      label: 'dataset 2',
+                      backgroundColor: LinearGradient(
+                        colors: [
+                          Colors.green.withOpacity(0.4),
+                          Colors.green.withOpacity(0)
+                        ],
+                        stops: [
+                          0,
+                          1
+                        ]
+                      )
+                    ),
+                  ]
+                )
+              ),
             ),
         ),
       ),
