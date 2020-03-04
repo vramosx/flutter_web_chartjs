@@ -1,6 +1,7 @@
 name: flutter_web_chartjs
 description: A chartjs wrapper for flutter web.
 version: 0.2.1
+repository: https://github.com/vramosx/flutter_web_chartjs
 
 flutter:
   plugin:

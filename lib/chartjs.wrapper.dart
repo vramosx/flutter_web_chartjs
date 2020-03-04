@@ -1,4 +1,4 @@
-library flutter_web_chartjs;
+library flutter_web_chartjs_wrapper;
 
 import 'dart:convert';
 import 'dart:html';
@@ -10,10 +10,27 @@ import 'dart:js' as js;
 import 'package:flutter_web_chartjs/chartjs.models.dart';
 import 'package:flutter_web_chartjs/chartjs.wrapper.utils.dart';
 
+/// `ChartJS`
+/// 
+/// Renders a ChartJS element
+/// 
+/// -- PROPERTIES --
+/// 
+/// @required `String id` - is a html id to this canvas element. This need to be unique! 
+/// 
+/// `int width` - canvas element width
+/// 
+/// `int height` - canvas element height
+/// 
+/// `ChartConfig config` - ChartJS configuration
+/// 
+/// How it work's?
+/// 
+/// Create a HtmlElementView with a CanvasElement
+/// and render ChartJS with ChartConfig
 class ChartJS extends StatefulWidget {
   final int width;
   final int height;
-  final AlignmentGeometry alignment;
   final String id;
   final ChartConfig config;
 
@@ -22,8 +39,7 @@ class ChartJS extends StatefulWidget {
       this.width,
       this.height,
       @required this.id,
-      @required this.config,
-      this.alignment})
+      @required this.config})
       : assert(id != null), 
         assert(config != null),
         assert(config.type != null),
