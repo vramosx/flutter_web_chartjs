@@ -49,35 +49,35 @@ var myChart = new Chart(ctx, {
 ```dart
 @override
 Widget build(BuildContext context) {
-     return ChartJS(
-        id: 'my-chart' // you need to set a unique id
-        config: ChartConfig(
-	        type: ChartType.line,
-	        options: ChartOptions(
-	          responsive: true,
-	          legend: ChartLegend(
-				position: ChartLegendPosition.top
-			  ),
-	        ),
-	        data: ChartData(
-					labels: [
-						'January',
-						'February',
-						'March',
-						'April',
-						'May',
-						'June',
-						'July',
-						'August',
-						'September'
-					],
-					datasets: [
-						ChartDataset(
-							data: [15,23,56,95,44,54,88,12],
-							label: 'dataset 1',
-							backgroundColor:  Colors.blue.withOpacity(0.4)
-						)
-					]
+    return ChartJS(
+    id: 'my-chart' // you need to set a unique id
+    config: ChartConfig(
+        type: ChartType.line,
+        options: ChartOptions(
+            responsive: true,
+            legend: ChartLegend(
+            position: ChartLegendPosition.top
+            ),
+        ),
+    data: ChartData(
+            labels: [
+                'January',
+                'February',
+                'March',
+                'April',
+                'May',
+                'June',
+                'July',
+                'August',
+                'September'
+            ],
+            datasets: [
+                ChartDataset(
+                    data: [15,23,56,95,44,54,88,12],
+                    label: 'dataset 1',
+                    backgroundColor:  Colors.blue.withOpacity(0.4)
+                )
+            ]
         )
      );
 }
@@ -98,62 +98,62 @@ new Chart(ctx, {
 #### Flutter Web:
 ```dart
 ChartJS(
-        config: ChartConfig(
-	        type: ChartType.line, // enum of string options
-	    ...
-	    )
+    config: ChartConfig(
+        type: ChartType.line, // enum of string options
+    )
+    ...
 );
 ```
 #### 2 - You can use opacity and linear gradient to background and border options:
 ```dart
 return ChartJS(
-        id: 'my-chart' // you need to set a unique id
-        config: ChartConfig(
-	        type: ChartType.line,
-	        options: ChartOptions(
-	          responsive: true,
-	          legend: ChartLegend(
-				position: ChartLegendPosition.top
-			  ),
-	        ),
-	        data: ChartData(
-		        datasets: [
-						ChartDataset(
-							data: [15,23,56,95,44,54,88,12],
-							label: 'dataset 1',
-							backgroundColor:  Colors.blue.withOpacity(0.4) // background with opacity
-							borderColor: LinearGradient(  // You can use LinearGradient. (only colors and stops properties are supported)
-							   colors: [
-								   Colors.red,
-								   Colors.blue
-							   ],
-							   stops: [
-								   0, 1
-							   ]
-							)
-						)
-					]
-			)
+    id: 'my-chart' // you need to set a unique id
+    config: ChartConfig(
+        type: ChartType.line,
+        options: ChartOptions(
+            responsive: true,
+            legend: ChartLegend(
+            position: ChartLegendPosition.top
+            ),
+        ),
+        data: ChartData(
+            datasets: [
+                    ChartDataset(
+                        data: [15,23,56,95,44,54,88,12],
+                        label: 'dataset 1',
+                        backgroundColor:  Colors.blue.withOpacity(0.4) // background with opacity
+                        borderColor: LinearGradient(  // You can use LinearGradient. (only colors and stops properties are supported)
+                            colors: [
+                                Colors.red,
+                                Colors.blue
+                            ],
+                            stops: [
+                                0, 1
+                            ]
+                        )
+                    )
+                ]
+        )
 	);
 ```
 
 #### 3 - You can use callback to format the tooltip:
 ```dart
 ChartJS(
-		...
-		options: ChartOptions(
-			tooltip: ChartTooltip(
-			intersect:  false,
-			mode: ChartTooltipMode.isIndex,
-			callbacks:  ChartCallbacks(
-			label: (ChartTooltipItem tooltip) {
-			    // this method will be called from JS side
-			    // you can use any dart code here
-			    // and return the string of tooltip
-				return  'R\$ ${tooltip.value}';
-			}
-		)
-		...
+    ...
+    options: ChartOptions(
+        tooltip: ChartTooltip(
+        intersect:  false,
+        mode: ChartTooltipMode.isIndex,
+        callbacks:  ChartCallbacks(
+        label: (ChartTooltipItem tooltip) {
+            // this method will be called from JS side
+            // you can use any dart code here
+            // and return the string of tooltip
+            return  'R\$ ${tooltip.value}';
+        }
+    )
+    ...
 )
 ```
 
