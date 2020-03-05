@@ -1,3 +1,9 @@
-## 0.0.1
+## 0.2.1
 
-* TODO: Describe initial release.
+* Fixed borderColor context problem.
+* Fixed tooltip callbacks.
+* Fixed LinearGradient support.
+
+## 0.1.0
+
+* Initial release.
