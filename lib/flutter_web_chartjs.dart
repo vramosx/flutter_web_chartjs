@@ -6,7 +6,6 @@ class FlutterWebChartjs {
   }
 }
 
-
 class FlutterWebChartjsPlugin {
   static void registerWith(Registrar registrar) {
     // empty registerWith

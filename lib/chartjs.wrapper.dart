@@ -11,21 +11,21 @@ import 'package:flutter_web_chartjs/chartjs.models.dart';
 import 'package:flutter_web_chartjs/chartjs.wrapper.utils.dart';
 
 /// `ChartJS`
-/// 
+///
 /// Renders a ChartJS element
-/// 
+///
 /// -- PROPERTIES --
-/// 
-/// @required `String id` - is a html id to this canvas element. This need to be unique! 
-/// 
+///
+/// @required `String id` - is a html id to this canvas element. This need to be unique!
+///
 /// `int width` - canvas element width
-/// 
+///
 /// `int height` - canvas element height
-/// 
+///
 /// `ChartConfig config` - ChartJS configuration
-/// 
+///
 /// How it work's?
-/// 
+///
 /// Create a HtmlElementView with a CanvasElement
 /// and render ChartJS with ChartConfig
 class ChartJS extends StatefulWidget {
@@ -40,7 +40,7 @@ class ChartJS extends StatefulWidget {
       this.height,
       @required this.id,
       @required this.config})
-      : assert(id != null), 
+      : assert(id != null),
         assert(config != null),
         assert(config.type != null),
         assert(config.data != null),
@@ -76,37 +76,35 @@ class _ChartJSState extends State<ChartJS> {
 
     var jsonConfig =
         widget.config != null ? widget.config.toJson() : ChartConfig().toJson();
-    
+
     dynamic Function(dynamic, dynamic) formatTooltip;
-    
+
     String Function(ChartTooltipItem) tooltipCallback;
-    if(widget.config.options != null) {
-      if(widget.config.options.tooltip != null) {
-        if(widget.config.options.tooltip.callbacks != null) {
-          if(widget.config.options.tooltip.callbacks.label != null) {
+    if (widget.config.options != null) {
+      if (widget.config.options.tooltip != null) {
+        if (widget.config.options.tooltip.callbacks != null) {
+          if (widget.config.options.tooltip.callbacks.label != null) {
             tooltipCallback = widget.config.options.tooltip.callbacks.label;
           }
         }
       }
     }
 
-    if(tooltipCallback != null) {
+    if (tooltipCallback != null) {
       formatTooltip = (_tooltipItem, _data) {
         var _decode = json.decode(_tooltipItem);
         var tooltipItem = ChartTooltipItem.fromJson(_decode);
 
-        if(tooltipCallback != null) return tooltipCallback(tooltipItem);
+        if (tooltipCallback != null) return tooltipCallback(tooltipItem);
 
         return tooltipItem.value;
       };
     }
-     
+
     var utils = ChartJSWrapperPlugin();
 
     utils.showChart(
-      "$_id", 
-      json.encode(jsonConfig), 
-      js.allowInterop(formatTooltip));
+        "$_id", json.encode(jsonConfig), js.allowInterop(formatTooltip));
   }
 
   void registerContent() {

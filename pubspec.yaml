@@ -1,8 +1,8 @@
 name: flutter_web_chartjs
-description: A chartjs wrapper for flutter web.
-version: 0.2.1
+description: A ChartJS wrapper for Flutter Web. flutter_web_chartjs use the HtmlElementView to render the ChartJS canvas as a Flutter Web widget.
+version: 0.2.2
 authors:
-  - vramosx
+  - vramosx <vp.ramos@gmail.com>
 homepage: https://github.com/vramosx/flutter_web_chartjs
 repository: https://github.com/vramosx/flutter_web_chartjs
 

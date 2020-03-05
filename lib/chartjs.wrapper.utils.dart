@@ -1,5 +1,3 @@
-
-
 @JS()
 library chartjs_wrapper_utils;
 
@@ -9,5 +7,6 @@ import 'package:js/js.dart';
 @JS('chartJSWrapperPlugin')
 class ChartJSWrapperPlugin {
   external factory ChartJSWrapperPlugin();
-  external void showChart(String chartId, String config, Function(dynamic, dynamic) formatTooltip);
-} 
+  external void showChart(
+      String chartId, String config, Function(dynamic, dynamic) formatTooltip);
+}

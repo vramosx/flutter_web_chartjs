@@ -12,7 +12,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-
   @override
   void initState() {
     super.initState();
@@ -28,74 +27,43 @@ class _MyAppState extends State<MyApp> {
         body: Container(
           alignment: Alignment.center,
           child: ChartJS(
-              id: 'line-example',
-              config: ChartConfig(
+            id: 'line-example',
+            config: ChartConfig(
                 type: ChartType.line,
                 options: ChartOptions(
-                  tooltip: ChartTooltip(
-                    intersect: false,
-                    mode: ChartTooltipMode.isIndex,
-                    callbacks: ChartCallbacks(
-                      label: (tooltip) {
-                        return 'R\$ ${tooltip.value}';
-                      }
-                    )
-                  )
-                ),
-                data: ChartData(
-                  labels: [
-                    'January',
-                    'February',
-                    'March',
-                    'April',
-                    'May',
-                    'June',
-                    'July',
-                    'August',
-                    'September'
-                  ],
-                  datasets: [
-                    ChartDataset(
-                      data: [
-                        15,
-                        23,
-                        56,
-                        95,
-                        44,
-                        54,
-                        88,
-                        12
-                      ],
+                    tooltip: ChartTooltip(
+                        intersect: false,
+                        mode: ChartTooltipMode.isIndex,
+                        callbacks: ChartCallbacks(label: (tooltip) {
+                          return 'R\$ ${tooltip.value}';
+                        }))),
+                data: ChartData(labels: [
+                  'January',
+                  'February',
+                  'March',
+                  'April',
+                  'May',
+                  'June',
+                  'July',
+                  'August',
+                  'September'
+                ], datasets: [
+                  ChartDataset(
+                      data: [15, 23, 56, 95, 44, 54, 88, 12],
                       label: 'dataset 1',
-                      backgroundColor: Colors.blue.withOpacity(0.4)
-                    ),
-                    ChartDataset(
-                      data: [
-                        12,
-                        88,
-                        54,
-                        44,
-                        56,
-                        23,
-                        15,
-                        12
-                      ],
+                      backgroundColor: Colors.blue.withOpacity(0.4)),
+                  ChartDataset(
+                      data: [12, 88, 54, 44, 56, 23, 15, 12],
                       label: 'dataset 2',
-                      backgroundColor: LinearGradient(
-                        colors: [
-                          Colors.green.withOpacity(0.4),
-                          Colors.green.withOpacity(0)
-                        ],
-                        stops: [
-                          0,
-                          1
-                        ]
-                      )
-                    ),
-                  ]
-                )
-              ),
-            ),
+                      backgroundColor: LinearGradient(colors: [
+                        Colors.green.withOpacity(0.4),
+                        Colors.green.withOpacity(0)
+                      ], stops: [
+                        0,
+                        1
+                      ])),
+                ])),
+          ),
         ),
       ),
     );

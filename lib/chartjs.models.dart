@@ -3,23 +3,95 @@ library flutter_web_chartjs_models;
 import 'package:flutter/material.dart';
 import 'package:flutter_web_chartjs/utils.dart';
 
+/// `ChartDatasetFill` DatasetFill options:
+///
+/// `origin`,
+/// `start`,
+/// `end`,
+/// `isFalse`(false)
 enum ChartDatasetFill { origin, start, end, isFalse }
 
-enum ChartType { line, bar, radar, doughnut, pie, polarArea, bubble, scatter }
+/// `ChartType` Type options:
+///
+/// `line` - A line chart is a way of plotting data points on a line. Often, it is used to show trend data, or the comparison of two data sets.
+///
+/// `bar` - A bar chart provides a way of showing data values represented as vertical bars. It is sometimes used to show trend data, and the comparison of multiple data sets side by side.
+///
+/// `radar` - A radar chart is a way of showing multiple data points and the variation between them. They are often useful for comparing the points of two or more different data sets.
+///
+/// `doughnut` and `pie` - Pie and doughnut charts are probably the most commonly used charts. They are divided into segments, the arc of each segment shows the proportional value of each piece of data.
+///
+/// `polarArea` - Polar area charts are similar to pie charts, but each segment has the same angle - the radius of the segment differs depending on the value.
+///
+/// `bubble` - A bubble chart is used to display three dimensions of data at the same time. The location of the bubble is determined by the first two dimensions and the corresponding horizontal and vertical axes.
+///
+/// `scatter` - NOT SUPPORTED by flutter_web_chartkjs
+enum ChartType { line, bar, radar, doughnut, pie, polarArea, bubble }
 
+/// `ChartSteppedLineType` SteppedLine options:
+///
+/// `isFalse`(false),
+/// `isTrue`(true),
+/// `before`,
+/// `after`,
+/// `middle`,
 enum ChartSteppedLineType { isFalse, isTrue, before, after, middle }
 
+/// `ChartLegendPosition` LegendPosition options:
+///
+/// `top`,
+/// `right`,
+/// `bottom`,
+/// `left`
 enum ChartLegendPosition { top, right, bottom, left }
 
+/// `ChartTooltipMode` TooltipMode options:
+///
+/// `isIndex`(index),
+/// `dataset`,
+/// `point`,
+/// `nearest`
+///  `x`
+///  `y`
 enum ChartTooltipMode { isIndex, dataset, point, nearest, x, y }
 
+/// `ChartConfig` - ChartJS config
+///
+/// Set the ChartJS properties and data
 class ChartConfig {
+  /// `type` - ChartJS config > type property.
+  ///
+  /// `line` - A line chart is a way of plotting data points on a line. Often, it is used to show trend data, or the comparison of two data sets.
+  ///
+  /// `bar` - A bar chart provides a way of showing data values represented as vertical bars. It is sometimes used to show trend data, and the comparison of multiple data sets side by side.
+  ///
+  /// `radar` - A radar chart is a way of showing multiple data points and the variation between them. They are often useful for comparing the points of two or more different data sets.
+  ///
+  /// `doughnut` and `pie` - Pie and doughnut charts are probably the most commonly used charts. They are divided into segments, the arc of each segment shows the proportional value of each piece of data.
+  ///
+  /// `polarArea` - Polar area charts are similar to pie charts, but each segment has the same angle - the radius of the segment differs depending on the value.
+  ///
+  /// `bubble` - A bubble chart is used to display three dimensions of data at the same time. The location of the bubble is determined by the first two dimensions and the corresponding horizontal and vertical axes.
+  ///
+  /// `scatter` - NOT SUPPORTED YET.
   ChartType type;
+
+  /// `ChartData` - ChartJS config > data property.
+  /// Set the ChartJS data.
   ChartData data;
+
+  /// `ChartOptions` - ChartJS config > options property.
+  /// Set the ChartJS options.
   ChartOptions options;
 
+  /// `ChartConfig` - ChartJS config
+  ///
+  /// Set the ChartJS properties and data
+  ///
+  /// `type` - Choose one chart type: `line`, `bar`, `radar`, `doughnut`, `pie`, `polarArea`, `bubble`
   ChartConfig({this.type = ChartType.line, this.data, this.options});
 
+  /// Converts ChartType to string for JSON object
   getType(ChartType type) {
     switch (type) {
       case ChartType.bar:
@@ -36,11 +108,10 @@ class ChartConfig {
         return 'polarArea';
       case ChartType.radar:
         return 'radar';
-      case ChartType.scatter:
-        return 'scatter';
     }
   }
 
+  /// Convert the class to json
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['type'] = getType(type);
@@ -54,8 +125,16 @@ class ChartConfig {
   }
 }
 
+/// `ChartData` - ChartJS config > data property.
+/// Set the ChartJS data.
+///
+/// `datasets` - `List<ChartDataset>` - List of ChartDataset with the chart data.
+/// `labels` - `List<String>` - List of labels for each dataset. The length has to be equal to `datasets` length.
 class ChartData {
+  /// `datasets` - `List<ChartDataset>` - List of ChartDataset with the chart data.
   List<ChartDataset> datasets;
+
+  /// `labels` - `List<String>` - List of labels for each dataset. The length has to be equal to `datasets` length.
   List<String> labels;
 
   ChartData({this.datasets, this.labels});
@@ -185,7 +264,7 @@ class ChartSteppedLine {
 class ChartOptions {
   ChartLegend legend;
   bool responsive;
-  String title;
+  ChartTitle title;
   ChartScales scales;
   ChartAnimationConfiguration animationConfiguration;
   ChartLayout layout;
@@ -281,7 +360,7 @@ class ChartTooltip {
 class ChartCallbacks {
   String Function(ChartTooltipItem) label;
 
-  ChartCallbacks({ this.label });
+  ChartCallbacks({this.label});
 }
 
 class ChartLayout {
@@ -523,5 +602,6 @@ class ChartTooltipItem {
     return data;
   }
 
-  String toString() => "{ xLabel: $xLabel, yLabel: $yLabel, label: $label, value: $value, index: $index, datasetIndex: $datasetIndex, x: $x, y: $y }";
+  String toString() =>
+      "{ xLabel: $xLabel, yLabel: $yLabel, label: $label, value: $value, index: $index, datasetIndex: $datasetIndex, x: $x, y: $y }";
 }
