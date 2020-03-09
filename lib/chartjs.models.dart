@@ -337,9 +337,6 @@ class ChartTooltip {
         case ChartTooltipMode.point:
           data['mode'] = 'point';
           break;
-        case ChartTooltipMode.nearest:
-          data['mode'] = 'nearest';
-          break;
         case ChartTooltipMode.x:
           data['mode'] = 'x';
           break;
@@ -413,8 +410,8 @@ class ChartTitle {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
 
-    data['display'] = this.display;
-    data['text'] = this.text;
+    if (this.display != null) data['display'] = this.display;
+    if (this.text != null) data['text'] = this.text;
     return data;
   }
 }
@@ -435,7 +432,7 @@ class ChartScales {
         _xAxes.add(item.toJson());
       }
 
-      data['xAxes'] = xAxes;
+      data['xAxes'] = _xAxes;
     }
 
     if (this.yAxes != null) {
@@ -518,10 +515,10 @@ class ChartGridLines {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
 
-    data['display'] = this.display;
-    data['drawBorder'] = this.drawBorder;
-    data['drawOnChartArea'] = this.drawOnChartArea;
-    data['drawTicks'] = this.drawTicks;
+    if (this.display != null) data['display'] = this.display;
+    if (this.drawBorder != null) data['drawBorder'] = this.drawBorder;
+    if (this.drawOnChartArea != null) data['drawOnChartArea'] = this.drawOnChartArea;
+    if (this.drawTicks != null) data['drawTicks'] = this.drawTicks;
     return data;
   }
 }
