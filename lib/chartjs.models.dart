@@ -1,5 +1,6 @@
 library flutter_web_chartjs_models;
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_web_chartjs/utils.dart';
 
@@ -55,6 +56,122 @@ enum ChartLegendPosition { top, right, bottom, left }
 ///  `y`
 enum ChartTooltipMode { isIndex, dataset, point, nearest, x, y }
 
+/// `ChartCartesianAxisType` AxisType options:
+///
+/// `category`,
+/// `linear`,
+/// `logarithmic`,
+/// `time`
+enum ChartCartesianAxisType { category, linear, logarithmic, time }
+
+/// `ChartTickSource` options:
+///
+/// `auto`,
+/// `data`,
+/// `labels`,
+enum ChartTickSource { auto, data, labels }
+
+/// `ChartScaleDistribution` options:
+///
+/// `linear`,
+/// `series`,
+enum ChartScaleDistribution { linear, series }
+
+/// `ChartScaleBounds` options:
+///
+/// `data`,
+/// `ticks`,
+enum ChartScaleBounds { data, ticks }
+
+/// `ChartAxisTimeMinUnit` AxisTimeMinUnit options:
+///
+/// `millisecond`,
+/// `second`,
+/// `minute`,
+/// `hour`,
+/// `day`,
+/// `week`,
+/// `quarter`,
+/// `year`,
+enum ChartAxisTimeUnit {
+  millisecond,
+  second,
+  minute,
+  hour,
+  day,
+  week,
+  month,
+  quarter,
+  year
+}
+
+/// `ChartEasing` options:
+///
+/// `linear`
+/// `easeInQuad`
+/// `easeOutQuad`
+/// `easeInOutQuad`
+/// `easeInCubic`
+/// `easeOutCubic`
+/// `easeInOutCubic`
+/// `easeInQuart`
+/// `easeOutQuart`
+/// `easeInOutQuart`
+/// `easeInQuint`
+/// `easeOutQuint`
+/// `easeInOutQuint`
+/// `easeInSine`
+/// `easeOutSine`
+/// `easeInOutSine`
+/// `easeInExpo`
+/// `easeOutExpo`
+/// `easeInOutExpo`
+/// `easeInCirc`
+/// `easeOutCirc`
+/// `easeInOutCirc`
+/// `easeInElastic`
+/// `easeOutElastic`
+/// `easeInOutElastic`
+/// `easeInBack`
+/// `easeOutBack`
+/// `easeInOutBack`
+/// `easeInBounce`
+/// `easeOutBounce`
+/// `easeInOutBounce
+enum ChartEasing {
+  linear,
+  easeInQuad,
+  easeOutQuad,
+  easeInOutQuad,
+  easeInCubic,
+  easeOutCubic,
+  easeInOutCubic,
+  easeInQuart,
+  easeOutQuart,
+  easeInOutQuart,
+  easeInQuint,
+  easeOutQuint,
+  easeInOutQuint,
+  easeInSine,
+  easeOutSine,
+  easeInOutSine,
+  easeInExpo,
+  easeOutExpo,
+  easeInOutExpo,
+  easeInCirc,
+  easeOutCirc,
+  easeInOutCirc,
+  easeInElastic,
+  easeOutElastic,
+  easeInOutElastic,
+  easeInBack,
+  easeOutBack,
+  easeInOutBack,
+  easeInBounce,
+  easeOutBounce,
+  easeInOutBounce
+}
+
 /// `ChartConfig` - ChartJS config
 ///
 /// Set the ChartJS properties and data
@@ -91,30 +208,10 @@ class ChartConfig {
   /// `type` - Choose one chart type: `line`, `bar`, `radar`, `doughnut`, `pie`, `polarArea`, `bubble`
   ChartConfig({this.type = ChartType.line, this.data, this.options});
 
-  /// Converts ChartType to string for JSON object
-  getType(ChartType type) {
-    switch (type) {
-      case ChartType.bar:
-        return 'bar';
-      case ChartType.bubble:
-        return 'bubble';
-      case ChartType.doughnut:
-        return 'doughnut';
-      case ChartType.line:
-        return 'line';
-      case ChartType.pie:
-        return 'pie';
-      case ChartType.polarArea:
-        return 'polarArea';
-      case ChartType.radar:
-        return 'radar';
-    }
-  }
-
   /// Convert the class to json
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['type'] = getType(type);
+    data['type'] = describeEnum(type);
     if (this.data != null) {
       data['data'] = this.data.toJson();
     }
@@ -150,7 +247,7 @@ class ChartData {
 }
 
 class ChartDataset {
-  List<double> data;
+  List<dynamic> data;
   dynamic backgroundColor;
   String label;
   ChartDatasetFill fill;
@@ -200,20 +297,7 @@ class ChartDataset {
     }
 
     if (fill != null) {
-      switch (fill) {
-        case ChartDatasetFill.start:
-          data['fill'] = 'start';
-          break;
-        case ChartDatasetFill.end:
-          data['fill'] = 'end';
-          break;
-        case ChartDatasetFill.origin:
-          data['fill'] = 'origin';
-          break;
-        case ChartDatasetFill.isFalse:
-          data['fill'] = false;
-          break;
-      }
+      data['fill'] = describeEnum(fill).replaceAll('isFalse', 'false');
     }
 
     return data;
@@ -230,23 +314,9 @@ class ChartSteppedLine {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     if (this.steppedLine != null) {
-      switch (this.steppedLine) {
-        case ChartSteppedLineType.after:
-          data['steppedLine'] = 'after';
-          break;
-        case ChartSteppedLineType.before:
-          data['steppedLine'] = 'before';
-          break;
-        case ChartSteppedLineType.isFalse:
-          data['steppedLine'] = false;
-          break;
-        case ChartSteppedLineType.isTrue:
-          data['steppedLine'] = true;
-          break;
-        case ChartSteppedLineType.middle:
-          data['steppedLine'] = 'middle';
-          break;
-      }
+      data['steppedLine'] = describeEnum(this.steppedLine)
+          .replaceAll('isFalse', 'false')
+          .replaceAll('isTrue', 'true');
     }
 
     if (this.label != null) {
@@ -290,7 +360,7 @@ class ChartOptions {
     }
 
     if (this.animationConfiguration != null) {
-      data['animationConfiguration'] = this.animationConfiguration.toJson();
+      data['animation'] = this.animationConfiguration.toJson();
     }
 
     if (this.scales != null) {
@@ -324,26 +394,7 @@ class ChartTooltip {
     final Map<String, dynamic> data = new Map<String, dynamic>();
 
     if (this.mode != null) {
-      switch (this.mode) {
-        case ChartTooltipMode.dataset:
-          data['mode'] = 'dataset';
-          break;
-        case ChartTooltipMode.isIndex:
-          data['mode'] = 'index';
-          break;
-        case ChartTooltipMode.nearest:
-          data['mode'] = 'nearest';
-          break;
-        case ChartTooltipMode.point:
-          data['mode'] = 'point';
-          break;
-        case ChartTooltipMode.x:
-          data['mode'] = 'x';
-          break;
-        case ChartTooltipMode.y:
-          data['mode'] = 'y';
-          break;
-      }
+      data['mode'] = describeEnum(this.mode).replaceAll('isIndex', 'index');
     }
 
     if (this.intersect != null) {
@@ -383,7 +434,7 @@ class ChartLayout {
 
 class ChartAnimationConfiguration {
   Duration duration;
-  Curve easing;
+  ChartEasing easing;
 
   ChartAnimationConfiguration({this.duration, this.easing});
 
@@ -394,7 +445,7 @@ class ChartAnimationConfiguration {
     }
 
     if (this.easing != null) {
-      data['easing'] = this.easing.toString();
+      data['easing'] = describeEnum(this.easing);
     }
 
     return data;
@@ -448,12 +499,89 @@ class ChartScales {
   }
 }
 
+class ChartDisplayFormats {
+  String millisecond;
+  String second;
+  String minute;
+  String hour;
+  String day;
+  String week;
+  String month;
+  String quarter;
+  String year;
+
+  ChartDisplayFormats({this.millisecond, this.second, this.minute, this.hour,
+      this.day, this.week, this.month, this.quarter, this.year});
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = Map<String, dynamic>();
+
+    if (this.millisecond != null) data['millisecond'] = this.millisecond;
+    if (this.second != null) data['second'] = this.second;
+    if (this.minute != null) data['minute'] = this.minute;
+    if (this.hour != null) data['hour'] = this.hour;
+    if (this.day != null) data['day'] = this.day;
+    if (this.week != null) data['week'] = this.week;
+    if (this.month != null) data['month'] = this.month;
+    if (this.quarter != null) data['quarter'] = this.quarter;
+    if (this.year != null) data['year'] = this.year;
+    return data;
+  }
+}
+
+class ChartAxisTime {
+  ChartDisplayFormats displayFormats;
+  bool isoWeekday;
+  String parser;
+  ChartAxisTimeUnit round;
+  String tooltipFormat;
+  ChartAxisTimeUnit unit;
+  int stepSize;
+  ChartAxisTimeUnit minUnit;
+
+  ChartAxisTime(
+      {this.displayFormats,
+      this.isoWeekday,
+      this.parser,
+      this.round,
+      this.tooltipFormat,
+      this.unit,
+      this.stepSize,
+      this.minUnit});
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+
+    if (this.displayFormats != null)
+      data['displayFormats'] = this.displayFormats.toJson();
+    if (this.isoWeekday != null) data['isoWeekday'] = this.isoWeekday;
+    if (this.parser != null) data['parser'] = this.parser;
+    if (this.round != null) data['round'] = describeEnum(this.round);
+    if (this.tooltipFormat != null) data['tooltipFormat'] = this.tooltipFormat;
+    if (this.unit != null) data['unit'] = describeEnum(this.unit);
+    if (this.stepSize != null) data['stepSize'] = this.stepSize;
+    if (this.minUnit != null) data['minUnit'] = describeEnum(this.minUnit);
+    return data;
+  }
+}
+
 class ChartAxis {
   ChartGridLines gridLines;
   ChartTicks ticks;
   bool stacked;
+  ChartCartesianAxisType type;
+  ChartScaleDistribution distribution;
+  ChartScaleBounds bounds;
+  ChartAxisTime time;
 
-  ChartAxis({this.gridLines, this.ticks, this.stacked});
+  ChartAxis(
+      {this.gridLines,
+      this.ticks,
+      this.stacked,
+      this.type,
+      this.distribution,
+      this.bounds,
+      this.time});
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
@@ -469,6 +597,22 @@ class ChartAxis {
     if (this.stacked != null) {
       data['stacked'] = this.stacked;
     }
+
+    if (this.type != null) {
+      data['type'] = describeEnum(this.type);
+    }
+
+    if (this.distribution != null) {
+      data['distribution'] = describeEnum(this.distribution);
+    }
+
+    if (this.bounds != null) {
+      data['bounds'] = describeEnum(this.bounds);
+    }
+
+    if (this.time != null) {
+      data['time'] = this.time.toJson();
+    }
     return data;
   }
 }
@@ -476,28 +620,65 @@ class ChartAxis {
 class ChartTicks {
   int min;
   int max;
-  int stepSize;
+  int sampleSize;
   bool autoSkip;
-  int maxTicksLimit;
+  int autoSkipPadding;
+  int labelOffset;
+  int maxRotation;
+  int minRotation;
+  bool mirror;
+  int padding;
   String format;
 
-  ChartTicks(
-      {this.min,
-      this.max,
-      this.stepSize,
-      this.autoSkip,
-      this.maxTicksLimit,
-      this.format});
+  // Only apply to cartesian linear axis
+  bool beginAtZero;
+  int maxTicksLimit;
+  double precision;
+  double stepSize;
+  double suggestedMax;
+  double suggestedMin;
+
+  // Only apply to cartesian time axis
+  ChartTickSource source;
+
+  ChartTicks({
+    this.min,
+    this.max,
+    this.autoSkip,
+    this.format,
+    this.beginAtZero,
+    this.maxTicksLimit,
+    this.precision,
+    this.stepSize,
+    this.suggestedMax,
+    this.suggestedMin,
+    this.source,
+  });
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
 
     if (this.min != null) data['min'] = this.min;
     if (this.max != null) data['max'] = this.max;
-    if (this.stepSize != null) data['stepSize'] = this.stepSize;
+    if (this.sampleSize != null) data['sampleSize'] = this.sampleSize;
     if (this.autoSkip != null) data['autoSkip'] = this.autoSkip;
-    if (this.maxTicksLimit != null) data['maxTicksLimit'] = this.maxTicksLimit;
+    if (this.autoSkipPadding != null)
+      data['autoSkipPadding'] = this.autoSkipPadding;
+    if (this.labelOffset != null) data['labelOffset'] = this.labelOffset;
+    if (this.maxRotation != null) data['maxRotation'] = this.maxRotation;
+    if (this.minRotation != null) data['minRotation'] = this.minRotation;
+    if (this.mirror != null) data['mirror'] = this.mirror;
+    if (this.padding != null) data['padding'] = this.padding;
     if (this.format != null) data['format'] = this.format;
+
+    if (this.beginAtZero != null) data['beginAtZero'] = this.beginAtZero;
+    if (this.maxTicksLimit != null) data['maxTicksLimit'] = this.maxTicksLimit;
+    if (this.precision != null) data['precision'] = this.precision;
+    if (this.stepSize != null) data['stepSize'] = this.stepSize;
+    if (this.suggestedMax != null) data['suggestedMax'] = this.suggestedMax;
+    if (this.suggestedMin != null) data['suggestedMin'] = this.suggestedMin;
+
+    if (this.source != null) data['source'] = describeEnum(this.source);
 
     return data;
   }
@@ -517,7 +698,8 @@ class ChartGridLines {
 
     if (this.display != null) data['display'] = this.display;
     if (this.drawBorder != null) data['drawBorder'] = this.drawBorder;
-    if (this.drawOnChartArea != null) data['drawOnChartArea'] = this.drawOnChartArea;
+    if (this.drawOnChartArea != null)
+      data['drawOnChartArea'] = this.drawOnChartArea;
     if (this.drawTicks != null) data['drawTicks'] = this.drawTicks;
     return data;
   }
@@ -532,19 +714,8 @@ class ChartLegend {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
 
-    switch (this.position) {
-      case ChartLegendPosition.bottom:
-        data['position'] = 'bottom';
-        break;
-      case ChartLegendPosition.left:
-        data['position'] = 'left';
-        break;
-      case ChartLegendPosition.right:
-        data['position'] = 'right';
-        break;
-      case ChartLegendPosition.top:
-        data['position'] = 'top';
-        break;
+    if (this.position != null) {
+      data['position'] = describeEnum(this.position);
     }
 
     if (this.display != null) {
