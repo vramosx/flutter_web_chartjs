@@ -406,7 +406,7 @@ class ChartTooltip {
 }
 
 class ChartCallbacks {
-  String Function(ChartTooltipItem) label;
+  dynamic Function(ChartTooltipItem) label;
 
   ChartCallbacks({this.label});
 }
@@ -727,7 +727,7 @@ class ChartLegend {
 }
 
 class ChartTooltipItem {
-  String xLabel;
+  dynamic xLabel;
   num yLabel;
   String label;
   String value;
