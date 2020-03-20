@@ -1,5 +1,5 @@
 ## 0.2.5
-* Linear, time and logarithm axis support - Thanks, @JaviBonilla
+* Linear, time and logarithm axis support
 * Fix tooltip callback problem for Linear and Logarithm Axis.
 * Fix charts not render inside Column, Row or Wrap widget.
 
