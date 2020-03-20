@@ -11,16 +11,16 @@ This project will be _lightly_ maintained by the original author. Contributions 
 Include in your pubspec.yaml:
 
     dependencies:  
-       flutter_web_chartjs: ^0.2.3
+       flutter_web_chartjs: ^0.2.5
 
 
 Open your `web/index.html` file, and include this lines to your head tag:
 ```
 <!-- this is the chartjs library - you can use other chartjs versions if you needed -->
-<script  src="https://cdn.jsdelivr.net/gh/vramosx/flutter_web_chartjs@v0.2.3-alpha/js/chart.min.js"></script>
+<script  src="https://cdn.jsdelivr.net/gh/vramosx/flutter_web_chartjs@v0.2.5-alpha/js/chart.min.js"></script>
 
 <!-- this is a js to communicate with flutter -->
-<script  src="https://cdn.jsdelivr.net/gh/vramosx/flutter_web_chartjs@v0.2.3-alpha/js/chartjs.wrapper.utils.min.js"  type="application/javascript"></script>
+<script  src="https://cdn.jsdelivr.net/gh/vramosx/flutter_web_chartjs@v0.2.5-alpha/js/chartjs.wrapper.utils.min.js"  type="application/javascript"></script>
 ```
 
 ## Usage
