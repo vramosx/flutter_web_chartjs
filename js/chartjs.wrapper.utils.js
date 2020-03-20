@@ -44,7 +44,6 @@ window.chartJSWrapperPlugin = class {
       for (let i = 0; i < platformViews.length; i++) {
         const platformView = platformViews[i];
         this.checkContext(platformView.shadowRoot, "#" + chartId).then(chart => {
-          console.log('chartFinded! ---- ', chartId, chart);
           var _chartContext = chart.getContext("2d");
   
           config.data.datasets.forEach(element => {
