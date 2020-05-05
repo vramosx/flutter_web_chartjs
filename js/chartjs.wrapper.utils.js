@@ -39,57 +39,61 @@ window.chartJSWrapperPlugin = class {
     }
 
     var createGradient = this.createGradient;
-    this.checkContext(document, "flt-platform-view").then(platformView => {
-      this.checkContext(platformView.shadowRoot, "#" + chartId).then(chart => {
-        var _chartContext = chart.getContext("2d");
-
-        config.data.datasets.forEach(element => {
-          if (element.backgroundColor) {
-            element.backgroundColor = createGradient(
-              element.backgroundColor,
-              _chartContext
-            );
+    this.checkContext(document, "flt-platform-view").then(e => {
+      var platformViews = document.querySelectorAll("flt-platform-view");
+      for (let i = 0; i < platformViews.length; i++) {
+        const platformView = platformViews[i];
+        this.checkContext(platformView.shadowRoot, "#" + chartId).then(chart => {
+          var _chartContext = chart.getContext("2d");
+  
+          config.data.datasets.forEach(element => {
+            if (element.backgroundColor) {
+              element.backgroundColor = createGradient(
+                element.backgroundColor,
+                _chartContext
+              );
+            }
+  
+            if (element.borderColor) {
+              element.borderColor = createGradient(
+                element.borderColor,
+                _chartContext
+              );
+            }
+          });
+  
+          if (config.options) {
+            if (config.options.scales) {
+              if (config.options.scales.xAxes) {
+                config.options.scales.xAxes.forEach(element => {
+                  if (element.ticks) {
+                    if (element.ticks.format) {
+                      element.ticks.callback = function (value, index, values) {
+                        return element.ticks.format.replace("{value}", value);
+                      };
+                    }
+                  }
+                });
+              }
+  
+              if (config.options.scales.yAxes) {
+                config.options.scales.yAxes.forEach(element => {
+                  if (element.ticks) {
+                    if (element.ticks.format) {
+                      element.ticks.callback = function (value, index, values) {
+                        return element.ticks.format.replace("{value}", value);
+                      };
+                    }
+                  }
+                });
+              }
+            }
           }
-
-          if (element.borderColor) {
-            element.borderColor = createGradient(
-              element.borderColor,
-              _chartContext
-            );
-          }
+  
+          if (window.chartJSObjects[chartId] != null) window.chartJSObjects[chartId].destroy();
+          window.chartJSObjects[chartId] = new Chart(_chartContext, config);
         });
-
-        if (config.options) {
-          if (config.options.scales) {
-            if (config.options.scales.xAxes) {
-              config.options.scales.xAxes.forEach(element => {
-                if (element.ticks) {
-                  if (element.ticks.format) {
-                    element.ticks.callback = function (value, index, values) {
-                      return element.ticks.format.replace("{value}", value);
-                    };
-                  }
-                }
-              });
-            }
-
-            if (config.options.scales.yAxes) {
-              config.options.scales.yAxes.forEach(element => {
-                if (element.ticks) {
-                  if (element.ticks.format) {
-                    element.ticks.callback = function (value, index, values) {
-                      return element.ticks.format.replace("{value}", value);
-                    };
-                  }
-                }
-              });
-            }
-          }
-        }
-
-        if (window.chartJSObjects[chartId] != null) window.chartJSObjects[chartId].destroy();
-        window.chartJSObjects[chartId] = new Chart(_chartContext, config);
-      })
+      }
     });
   }
 
