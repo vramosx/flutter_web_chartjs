@@ -1,4 +1,4 @@
-## 0.2.6
+## 0.2.6-beta
 * Support for Microsoft Edge Legacy and Safari browsers
 
 ## 0.2.5

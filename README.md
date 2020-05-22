@@ -6,12 +6,17 @@ This project will be _lightly_ maintained by the original author. Contributions 
 
 **Warning:**: This plugin still under development.
 
+**Microsoft Edge Legacy users**: Need to include this line to your `index.html` head tag:
+```
+<script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/2.3.0/webcomponents-bundle.js"></script>
+``` 
+
 ## Getting Started
 
 Include in your pubspec.yaml:
 
     dependencies:  
-       flutter_web_chartjs: ^0.2.5
+       flutter_web_chartjs: ^0.2.6-beta
 
 
 Open your `web/index.html` file, and include this lines to your head tag:
