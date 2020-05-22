@@ -1,3 +1,6 @@
+## 0.2.6
+* Support for Microsoft Edge Legacy and Safari browsers
+
 ## 0.2.5
 * Linear, time and logarithm axis support
 * Fix tooltip callback problem for Linear and Logarithm Axis.
