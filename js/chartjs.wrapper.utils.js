@@ -1,6 +1,6 @@
 window.chartJSObjects = {}
-window.chartJSWrapperPlugin = class {
-  checkContext = async (element, selector) => {
+window.chartJSWrapperPlugin = class checkContext {
+  async init (element, selector) {
     while (element.querySelector(selector) === null) {
       await new Promise(resolve => setTimeout(resolve, 500));
     }
@@ -8,7 +8,7 @@ window.chartJSWrapperPlugin = class {
     return element.querySelector(selector);
   };
 
-  createGradient = (gradientJson, chartContext) => {
+  createGradient (gradientJson, chartContext) {
     if (gradientJson.isGradient) {
       var gradient = chartContext.createLinearGradient(0, 0, 0, 400);
 
@@ -22,7 +22,7 @@ window.chartJSWrapperPlugin = class {
     return gradientJson;
   }
 
-  showChart = (chartId, config, formatTooltip) => {
+  showChart (chartId, config, formatTooltip) {
     config = JSON.parse(config);
 
     if (formatTooltip) {
@@ -39,11 +39,12 @@ window.chartJSWrapperPlugin = class {
     }
 
     var createGradient = this.createGradient;
-    this.checkContext(document, "flt-platform-view").then(e => {
+    var init = this.init;
+    init(document, "flt-platform-view").then(e => {
       var platformViews = document.querySelectorAll("flt-platform-view");
       for (let i = 0; i < platformViews.length; i++) {
         const platformView = platformViews[i];
-        this.checkContext(platformView.shadowRoot, "#" + chartId).then(chart => {
+        init(platformView.shadowRoot, "#" + chartId).then(chart => {
           var _chartContext = chart.getContext("2d");
   
           config.data.datasets.forEach(element => {
