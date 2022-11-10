@@ -1,3 +1,14 @@
+# WARNING: This package has been discontinued.
+
+NOTE:
+Flutter Web is currently fast enough to handle charts natively, so maintaining this package no longer makes sense.
+
+There are already several solutions in pub.dev itself:
+https://pub.dev/packages?q=platform%3Aweb+chart
+
+
+----
+
 ![chartjs running on flutter web](https://raw.githubusercontent.com/vramosx/flutter_web_chartjs/master/images/flutter_web_chartjs.png)
 
 A ChartJS wrapper for Flutter Web.
